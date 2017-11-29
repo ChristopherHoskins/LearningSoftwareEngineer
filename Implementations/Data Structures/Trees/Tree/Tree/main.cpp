@@ -1,4 +1,5 @@
 #include "tree.h"
+#include <random>
 
 void TestInsert1(void)
 {
@@ -23,6 +24,22 @@ void TestInsert2(void)
   tree.printValues();
 }
 
+void TestInsert3(void)
+{
+  Tree tree;
+  tree.insert(6);
+  tree.printValues();
+}
+
+void TestInsert4(void)
+{
+  Tree tree;
+  for (int i = 0; i < 100; ++i)
+    tree.insert(rand() % 100);
+
+  tree.printValues();
+}
+
 void TestInsertRecurv1(void)
 {
   Tree tree;
@@ -42,6 +59,23 @@ void TestInsertRecurv2(void)
   tree.insertRecurv(134);
   tree.insertRecurv(2);
   tree.insertRecurv(1111);
+
+  tree.printValues();
+}
+
+void TestInsertRecurv3(void)
+{
+  Tree tree;
+  for (int i = 0; i < 1000; ++i)
+    tree.insertRecurv(i);
+
+  tree.printValues();
+}
+
+void TestInsertRecurv4(void)
+{
+  Tree tree;
+  tree.insertRecurv(1);
 
   tree.printValues();
 }
@@ -92,15 +126,135 @@ void TestFind4(void)
     std::cout << tree.find(i) << std::endl;
 }
 
+void TestHeight1(void)
+{
+  Tree tree;
+  tree.insert(6);
+  tree.insert(4);
+  tree.insert(8);
+  tree.insert(7);
+  tree.insert(9);
+  tree.insert(13);
+  tree.insert(12);
+
+  tree.printValues();
+  std::cout << tree.height() << std::endl;
+}
+
+void TestHeight2(void)
+{
+  Tree tree;
+  for (int i = 0; i < 10; ++i)
+    tree.insert(i);
+
+  std::cout << tree.height() << std::endl;
+}
+
+void TestHeight3(void)
+{
+  Tree tree;
+  for (int i = 0; i < 100; ++i)
+    tree.insert(i);
+
+  std::cout << tree.height() << std::endl;
+}
+
+void TestHeight4(void)
+{
+  Tree tree;
+  tree.insert(1);
+
+  std::cout << tree.height() << std::endl;
+}
+
+void TestHeight5(void)
+{
+  Tree tree;
+  for (int i = 0; i < 1000; ++i)
+    tree.insert(rand() % 1000);
+
+  Tree tree2;
+  for (int i = 0; i < 1000; ++i)
+    tree2.insertRecurv(rand() % 1000);
+
+  std::cout << tree.height() << std::endl;
+  std::cout << tree2.height() << std::endl;
+}
+
+void TestHeight6(void)
+{
+  Tree tree;
+  std::cout << tree.height() << std::endl;
+}
+
+void TestCount1(void)
+{
+  Tree tree;
+  for (int i = 0; i < 1000; ++i)
+    tree.insert(rand() % 1000);
+
+  std::cout << tree.count() << std::endl;
+}
+
+void TestCount2(void)
+{
+  Tree tree;
+  for (int i = 0; i < 327; ++i)
+    tree.insert(rand() % 1000);
+
+  std::cout << tree.count() << std::endl;
+}
+
+void TestCount3(void)
+{
+  Tree tree;
+  tree.insert(1);
+
+  std::cout << tree.count() << std::endl;
+}
+
+void TestCount4(void)
+{
+  Tree tree;
+  tree.insert(6);
+  tree.insert(6);
+  tree.insert(6);
+
+  std::cout << tree.count() << std::endl;
+}
+
+void TestCount5(void)
+{
+  Tree tree;
+
+  std::cout << tree.count() << std::endl;
+}
+
 int main(void)
 {
   TestInsert1();
   TestInsert2();
+  TestInsert3();
+  TestInsert4();
+  TestInsertRecurv1();
+  TestInsertRecurv2();
+  TestInsertRecurv3();
+  TestInsertRecurv4();
   TestFind1();
   TestFind2();
   TestFind3();
   TestFind4();
-  //TestInsertRecurv1();
-  //TestInsertRecurv2();
+  TestHeight1();
+  TestHeight2();
+  TestHeight3();
+  TestHeight4();
+  TestHeight5();
+  TestHeight6();
+  TestCount1();
+  TestCount2();
+  TestCount3();
+  TestCount4();
+  TestCount5();
+  
   return 0;
 }

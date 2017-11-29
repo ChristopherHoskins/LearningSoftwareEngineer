@@ -1,6 +1,7 @@
 #ifndef TREE_H
 #define TREE_H
 #include <iostream>
+#include <algorithm>
 //insert    // insert value into tree
 //get_node_count // get count of values stored
 //print_values // prints the values in the tree, from min to max
@@ -65,8 +66,8 @@ public:
   {
     if (root_ == nullptr)
       root_ = makeNode(value);
-
-    insert(root_, value);
+    else
+      insert(root_, value);
   }
 
   void insert(int value)
@@ -78,13 +79,14 @@ public:
     else
     {
       Node* currNode = root_;
+      Node* newNode = makeNode(value);
       while (currNode != nullptr)
       {
-        if (value > root_->data)
+        if (value > currNode->data)
         {
           if (currNode->right == nullptr)
           {
-            currNode->right = makeNode(value);
+            currNode->right = newNode;
             return;
           }
           currNode = currNode->right;
@@ -93,7 +95,7 @@ public:
         {
           if (currNode->left == nullptr)
           {
-            currNode->left = makeNode(value);
+            currNode->left = newNode;
             return;
           }
 
@@ -103,9 +105,16 @@ public:
     }
   }
 
+  int count(Node* currNode)
+  {
+    if (currNode == nullptr)
+      return 0;
+    return count(currNode->left) + count(currNode->right) + 1;
+  }
+
   int count(void)
   {
-    return 1;
+    return count(root_);
   }
 
   void printValues(Node* currNode)
@@ -147,11 +156,14 @@ public:
 
   int height(Node* currNode)
   {
+    if (currNode == nullptr)
+      return 0;
+    return std::max(height(currNode->left), height(currNode->right)) + 1;
   }
 
   int height(void)
   {
-    if()
+    return height(root_);
   }
 
   int min(void)
