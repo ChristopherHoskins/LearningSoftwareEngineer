@@ -293,9 +293,42 @@ void levelOrder(Node * root)
     levelOrderList.pop();
   }
 }
+Node *lca(Node *root, int v1, int v2)
+{
+  //vector<node*> v1Parents;
+  //SearchNodesRec(root, v1Parents, v1);
+  //vector<node*> v2Parents;
+  //SearchNodesRec(root, v2Parents, v2);
+  //
+  //node* parentValue;
+  //for(auto tempValue : v1Parents)
+  //{
+  //  for(auto tempValue2 : v2Parents)
+  //  {
+  //    if(tempValue->data == tempValue2->data)
+  //    {
+  //      parentValue = tempValue;
+  //      break;
+  //    }
+  //  } 
+  //}
+  //Decide if you have to call recursively
+  //Samller than both
+  if (root->data < v1 && root->data < v2) {
+    return lca(root->right, v1, v2);
+  }
+  //Bigger than both
+  if (root->data > v1 && root->data > v2) {
+    return lca(root->left, v1, v2);
+  }
 
+  //Else solution already found
+  return root;
+
+}
 int main(void)
 {
+
 //  int value = 3;
 //  value = value << 2;
 //  function1(value);

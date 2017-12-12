@@ -725,11 +725,13 @@ Write code on a whiteboard or paper, not a computer. Test with some sample input
         - [ ] delete_tree
         - [X] is_in_tree // returns true if given value exists in the tree
         - [X] get_height // returns the height in nodes (single node's height is 1)
-        - [ ] get_min   // returns the minimum value stored in the tree
-        - [ ] get_max   // returns the maximum value stored in the tree
+        - [X] get_min   // returns the minimum value stored in the tree
+        - [X] get_max   // returns the maximum value stored in the tree
         - [ ] is_binary_search_tree
         - [ ] delete_value
         - [ ] get_successor // returns next-highest value in tree after given value, -1 if none
+        - [X] breadth_first_traversal // iterates through tree by level 
+        - [X] lowest_common_ancestor // finds the parent that is shared between two values
 
 - ### Heap / Priority Queue / Binary Heap
     - visualized as a tree, but is usually linear in storage (array, linked list)
