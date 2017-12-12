@@ -1,6 +1,12 @@
 #include "tree.h"
+#include <queue>
 #include <random>
-
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
 void TestInsert1(void)
 {
   Tree tree;
@@ -230,31 +236,96 @@ void TestCount5(void)
   std::cout << tree.count() << std::endl;
 }
 
+void TestMin1(void)
+{
+  Tree tree;
+  tree.insert(1);
+
+  std::cout << tree.min() << std::endl;
+}
+
+void TestMin2(void)
+{
+  Tree tree;
+  for (int i = 0; i < 100; ++i)
+    tree.insert(rand() % 100);
+
+  std::queue<Node*> levelOrderList;
+  levelOrderList.push(tree.root_);
+  while (!levelOrderList.empty())
+  {
+    Node* currNode = levelOrderList.front();
+    if (currNode->left != nullptr)
+      levelOrderList.push(currNode->left);
+    if (currNode->right != nullptr)
+      levelOrderList.push(currNode->right);
+    cout << currNode->data;
+    levelOrderList.pop();
+  }
+
+  std::cout << tree.min() << std::endl;
+}
+
+void TestMin3(void)
+{
+  Tree tree;
+  for (int i = 0; i < 100; ++i)
+    tree.insert(rand() % 1000);
+
+  tree.printValues();
+  std::cout << tree.min() << std::endl;
+}
+
+void levelOrder(Node * root)
+{
+  if (root == nullptr)
+    return;
+  queue<Node*> levelOrderList;
+  levelOrderList.push(root);
+  while (!levelOrderList.empty())
+  {
+    Node* currNode = levelOrderList.front();
+    if (currNode->left != nullptr)
+      levelOrderList.push(currNode->left);
+    if (currNode->right != nullptr)
+      levelOrderList.push(currNode->right);
+    cout << currNode->data << ' ';
+    levelOrderList.pop();
+  }
+}
+
 int main(void)
 {
-  TestInsert1();
-  TestInsert2();
-  TestInsert3();
-  TestInsert4();
-  TestInsertRecurv1();
-  TestInsertRecurv2();
-  TestInsertRecurv3();
-  TestInsertRecurv4();
-  TestFind1();
-  TestFind2();
-  TestFind3();
-  TestFind4();
-  TestHeight1();
-  TestHeight2();
-  TestHeight3();
-  TestHeight4();
-  TestHeight5();
-  TestHeight6();
-  TestCount1();
-  TestCount2();
-  TestCount3();
-  TestCount4();
-  TestCount5();
-  
+//  int value = 3;
+//  value = value << 2;
+//  function1(value);
+//  function2(value);
+//  function3(&value);
+//  //TestInsert1();
+//  //TestInsert2();
+//  //TestInsert3();
+//  //TestInsert4();
+//  //TestInsertRecurv1();
+//  //TestInsertRecurv2();
+//  //TestInsertRecurv3();
+//  //TestInsertRecurv4();
+//  //TestFind1();
+//  //TestFind2();
+//  //TestFind3();
+//  //TestFind4();
+//  //TestHeight1();
+//  //TestHeight2();
+//  //TestHeight3();
+//  //TestHeight4();
+//  //TestHeight5();
+//  //TestHeight6();
+//  //TestCount1();
+//  //TestCount2();
+//  //TestCount3();
+//  //TestCount4();
+//  //TestCount5();
+  TestMin1();
+  TestMin2();
+  TestMin3();
   return 0;
 }

@@ -166,14 +166,55 @@ public:
     return height(root_);
   }
 
+  int min(Node* currNode, int &currMin)
+  {
+    if (currNode == nullptr)
+      return 0;
+    if (currNode->data < currMin)
+      currMin = currNode->data;
+
+    min(currNode->left, currMin);
+    min(currNode->right, currMin);
+
+    return currMin;
+  }
+
   int min(void)
   {
-    return 1;
+    if (root_ == nullptr)
+      return -1;
+    Node* currNode = root_;
+    while (currNode->left != nullptr)
+      currNode = currNode->left;
+    return currNode->data;
   }
 
   int max(void)
   {
-    return 1;
+    if (root_ == nullptr)
+      return -1;
+    Node* currNode = root_;
+    while (currNode->right != nullptr)
+      currNode = currNode->right;
+    return currNode->data;
+  }
+
+  void breadthTraversal(void)
+  {
+    if (root_ == nullptr)
+      return;
+    queue<Node*> levelOrderList;
+    levelOrderList.push(root_);
+    while (!levelOrderList.empty())
+    {
+      Node* currNode = levelOrderList.front();
+      if (currNode->left != nullptr)
+        levelOrderList.push(currNode->left);
+      if (currNode->right != nullptr)
+        levelOrderList.push(currNode->right);
+      cout << currNode->data << ' ';
+      levelOrderList.pop();
+    }
   }
 
   bool isBinary(void)
@@ -191,7 +232,7 @@ public:
     return 1;
   }
 
-private:
+
   Node* root_;
 };
 
